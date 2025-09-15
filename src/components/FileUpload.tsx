@@ -34,7 +34,7 @@ export default function FileUpload() {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('https://fakeapi.platzi.com/en/rest/files/', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
@@ -50,7 +50,7 @@ export default function FileUpload() {
         const errorData = await response.json().catch(() => ({}));
         setResult({
           success: false,
-          message: errorData.message || `Upload failed with status: ${response.status}`,
+          message: errorData.error || `Upload failed with status: ${response.status}`,
         });
       }
     } catch (error) {
